@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Currency Converter App</title>
+    <style>
+        body {
+            background-color: #f0f8ff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            font-size: 5vw;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        form {
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 20px;
+            padding: 2vw;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 80vw;
+            max-width: 400px;
+            text-align: center;
+        }
+        input[type="number"] {
+            font-size: 4vw;
+            width: 100%;
+            padding: 1vw;
+            margin-bottom: 2vw;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            font-size: 4vw;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 1vw 2vw;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        h2 {
+            font-size: 4vw;
+            width: 80%;
+            border: 2px groove;
+            border-radius: 20px;
+            padding: 1vw;
+            margin-top: 2vw;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <script>
+        function check() {
+            let amount = document.getElementById("amount");
+            let msg = document.getElementById("msg");
+            if (amount.value === "") {
+                msg.innerHTML = "";
+                amount.focus();
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <h1>Live Currency Converter App</h1>
+        <form onsubmit="return check()">
+            <input type="number" step="0.01" name="amount" placeholder="Enter amount in $" id="amount" value="{{ request.GET.amount }}"/>
+            <br/>
+            <input type="submit" value="Convert to &#8377;" />
+        </form>
+        <h2 id="msg">{{msg}}</h2>
+    </center>
+</body>
+</html>
